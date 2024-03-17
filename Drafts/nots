@@ -1,0 +1,47 @@
+//  void newValueInput(int value[]){
+//      inputRandoms(value);
+//      for(int i=0;i<count;i++){
+//          for(int j=0;j<=8;j++){
+//              if(matrix[count-(i+1)][j]==value[j]){
+//              inputRandoms(value);   
+//              }
+//          }
+//      }
+//      inputRow(matrix,value,&count);
+//  }
+//  void newValueInput(int value[]){
+//      inputRandoms(value);
+//      if(count==0){
+//          for(int i=0;i<count;i++){
+//              for(int j=0;j<=8;j++){
+//                  if(matrix[0][j]==value[j]){
+//                  inputRandoms(value);   
+//                  }
+//              }
+//          }
+//         }else if(count==1){
+//             for(int i=0;i<count;i++){
+//                 for(int j=0;j<=8;j++){
+//                     if(matrix[0][j]==value[j]&&matrix[1][j]==value[j]){
+//                         inputRandoms(value);   
+//                     }
+//                 }
+//             } 
+//         }else if(count==2){
+//             for(int i=0;i<count;i++){
+//                 for(int j=0;j<=8;j++){
+//                     if(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]){
+//                         inputRandoms(value);   
+//                     }
+//                 }
+//             } 
+//         }else if(count==3){
+//             for(int i=0;i<count;i++){
+//                 for(int j=0;j<=8;j++){
+//                     if(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]){
+//                         inputRandoms(value);   
+//                     }
+//                 }
+//             } 
+//         }
+//     }

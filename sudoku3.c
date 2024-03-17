@@ -4,9 +4,8 @@
 #include<conio.h>
 int count=0;
 int matrix[9][9]={0};
-
 void inputRow(int matrix[9][9],int suffeledArr[],int* row);
-void inputRandoms(int arr[]);
+void inputRandoms(int arr[9]);
 void newValueInput(int value[]);
 void SinglePrintMatrix(int matrix[9][9]);
 
@@ -14,7 +13,7 @@ void main(){
     int values[9]={1,2,3,4,5,6,7,8,9};
     srand(time(0));
     inputRandoms(values);
-    for(int i=0;i<9;i++){
+    for(int i=0;i<=7;i++){
         if(count==0){
         inputRow(matrix, values, &count);
         }else{
@@ -25,167 +24,70 @@ void main(){
     getch();
 }
 
-void inputRandoms(int arr[]){
-    for (int i = 9 - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-}
+// inputs the row in the matrix
 void inputRow(int matrix[9][9],int suffeledArr[],int *count){
     for(int i=0;i<9;i++){
         matrix[*count][i]=suffeledArr[i];
     }
     (*count)++;
 }
-//  void newValueInput(int value[]){
-//      inputRandoms(value);
-//      for(int i=0;i<count;i++){
-//          for(int j=0;j<=8;j++){
-//              if(matrix[count-(i+1)][j]==value[j]){
-//              inputRandoms(value);   
-//              }
-//          }
-//      }
-//      inputRow(matrix,value,&count);
-//  }
-//  void newValueInput(int value[]){
-//      inputRandoms(value);
-//      if(count==0){
-//          for(int i=0;i<count;i++){
-//              for(int j=0;j<=8;j++){
-//                  if(matrix[0][j]==value[j]){
-//                  inputRandoms(value);   
-//                  }
-//              }
-//          }
-//         }else if(count==1){
-//             for(int i=0;i<count;i++){
-//                 for(int j=0;j<=8;j++){
-//                     if(matrix[0][j]==value[j]&&matrix[1][j]==value[j]){
-//                         inputRandoms(value);   
-//                     }
-//                 }
-//             } 
-//         }else if(count==2){
-//             for(int i=0;i<count;i++){
-//                 for(int j=0;j<=8;j++){
-//                     if(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]){
-//                         inputRandoms(value);   
-//                     }
-//                 }
-//             } 
-//         }else if(count==3){
-//             for(int i=0;i<count;i++){
-//                 for(int j=0;j<=8;j++){
-//                     if(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]){
-//                         inputRandoms(value);   
-//                     }
-//                 }
-//             } 
-//         }
-//     }
 
+//generates new inputs and cheaks for uniqueness in colunm, if not unique then rerolls with inputRandoms() function
 void newValueInput(int value[]){
     inputRandoms(value);
-    switch (count){
-    case 0:
-
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]){
-                inputRandoms(value);   
-            }
+    int temp[9]={0};
+    int i,k=count;
+    //discarded:
+    //   for(int i=0;i<count;i++){
+    //       for(int j=0;j<=8;j++){
+    //           if(matrix[count-(i+1)][j]==value[j]){
+    //           inputRandoms(value);   
+    //           }
+    //       }
+    //   }
+    for(int j=0;j<9;j++){
+        for(i=0;i<=count;i++){
+            //puts the value of one colunm in temp[i]
+            temp[i]=matrix[i][j];
         }
-    }
-    break;
+        //     //puts the latest value in temp without removing one of the data
 
-    case 1:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
+             temp[count+1]=value[j];
 
-    case 2:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
+        // if(count!=k&&count!=8){
+        //     temp[i+1]=value[i];
+        // }
 
-    case 3:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
+         for(k=count+1;k>=0;k--){
+             //cheaks for ununique value
+             if(temp[k]==temp[8-k]){
+                 if(((k)/(8-k))==1){//is uniwue
+                     inputRow(matrix,value,&count);
+                 }else{//is not unique
+                     newValueInput(value);
+                 }
+             }
+         }
 
-    case 4:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]&&matrix[4][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
+        
 
-    case 5:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]&&matrix[4][j]==value[j]&&matrix[5][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
 
-    case 6:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]&&matrix[4][j]==value[j]&&matrix[5][j]==value[j]&&matrix[6][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
     }
-    break;
-
-    case 7:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]&&matrix[4][j]==value[j]&&matrix[5][j]==value[j]&&matrix[6][j]==value[j]&&matrix[7][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
-
-    case 8:
-    for(int i=0;i<count;i++){
-         for(int j=0;j<=8;j++){
-            while(matrix[0][j]==value[j]&&matrix[1][j]==value[j]&&matrix[2][j]==value[j]&&matrix[3][j]==value[j]&&matrix[4][j]==value[j]&&matrix[5][j]==value[j]&&matrix[6][j]==value[j]&&matrix[7][j]==value[j]&&matrix[8][j]==value[j]){
-                inputRandoms(value);   
-            }
-        }
-    }
-    break;
-
-    default:
-        break;
-    }
-    inputRow(matrix,value,&count);
 }
+
+//suffels the value[] array to generate unique combanition of values
+void inputRandoms(int arr[9]){
+        int j=0,temp=0;
+    for (int i = 9 - 1; i > 0; i--) {
+        j = rand() % (i+1); //segmentation error
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
+
+
+// prints out the matrix
 
 void SinglePrintMatrix(int matrix[9][9]) {
     printf("Matrix:\n");
