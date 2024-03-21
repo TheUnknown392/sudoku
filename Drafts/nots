@@ -45,3 +45,57 @@
 //             } 
 //         }
 //     }
+
+
+
+
+
+
+
+//     for(int i=0;i<9;i++){
+//         matrix[*count][i]=suffeledArr[i];
+//     }
+//     (*count)++;
+// }
+
+//generates new inputs and cheaks for uniqueness in colunm, if not unique then rerolls with inputRandoms() function
+// void newValueInput(int value[]){
+//     inputRandoms(value);
+//     int temp[9]={0};
+//     int i,k=count,flag=0;
+//     //discarded:
+//     //   for(int i=0;i<count;i++){
+//     //       for(int j=0;j<=8;j++){
+//     //           if(matrix[count-(i+1)][j]==value[j]){
+//     //           inputRandoms(value);   
+//     //           }
+//     //       } 
+//     //   }
+//     for(int j=0;j<9;j++){
+//         for(i=0;i<=count;i++){
+//             //puts the value of one colunm in temp[i]
+//             temp[i]=matrix[i][j];
+//         }
+//         //     //puts the latest value in temp without removing one of the data
+
+//             temp[count]=value[j];
+
+//         // if(count!=k&&count!=8){
+//         //     temp[i+1]=value[i];
+//         // }
+
+//          for(k=count+1;k>=0;k--){
+//              //cheaks for ununique value
+//              if(temp[k]==temp[8-k]){
+//                  if(((k)/(8-k))==1){//is uniwue
+//                      flag=1;
+//                  }else{//is not unique
+//                      flag=0;
+//                  }
+//              }
+//          }
+
+        
+
+
+//     }
